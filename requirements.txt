@@ -1,0 +1,7 @@
+psycopg2
+pytest
+pytest-mock
+black
+flake8
+mypy
+isort
