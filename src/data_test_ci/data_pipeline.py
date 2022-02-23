@@ -18,7 +18,7 @@ def enrich_user_data(user_ids: List[int]) -> List[Dict[str, Any]]:
     id_name_map = {1: 'John', 2: 'Jane', 3: 'Doe'}
     enriched_data = []
     for id in user_ids:
-        data = {'id': id, 'name': id_name_map.get(id, 'No Name')}
+        data = {'id': id, 'name': id_name_map.get(id, 'no name')}
         enriched_data.append(data)
     return enriched_data
 
