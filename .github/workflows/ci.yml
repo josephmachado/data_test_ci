@@ -7,6 +7,6 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v2
       - name: Spin up containers
-        run: make build
+        run: make up
       - name: Run CI test
         run: make ci
