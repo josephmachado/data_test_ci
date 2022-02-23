@@ -1,15 +1,16 @@
-from typing import Any, List, Tuple
+from typing import Any, Dict, List
 
 import psycopg2.extras as p
+
 from data_test_ci.utils.db import WarehouseConnection
 from data_test_ci.utils.sde_config import get_warehouse_creds
 
 
 def get_user_data() -> List[int]:
     user_ids = []
-    with WarehouseConnection(get_warehouse_cred()).managed_cursor() as curr:
-        cursor.execute("Select id from app.user")
-        user_ids = cursor.fetchall()
+    with WarehouseConnection(get_warehouse_creds()).managed_cursor() as curr:
+        curr.execute("Select id from app.user")
+        user_ids = curr.fetchall()
     return [int(u[0]) for u in user_ids]
 
 
@@ -34,7 +35,7 @@ def send_data_to_destination(data: List[Dict[str, Any]]):
     )
     '''
     with WarehouseConnection(get_warehouse_creds()).managed_cursor() as curr:
-        p.execute_batch(curr, _get_exchange_insert_query(), data)
+        p.execute_batch(curr, insert_query, data)
 
 
 def run() -> None:
